@@ -1,4 +1,4 @@
-using WunderVisionBlog2.Models;
+using WunderVisionBlog2.Models.Blog;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
@@ -8,8 +8,9 @@ var serverVersion = new MariaDbServerVersion(new Version(15,1));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<WunderVisionBlog2.Models.BlogDBContext>(options=>{
+builder.Services.AddDbContext<BlogDBContext>(options=>{
                options.UseMySql(builder.Configuration.GetConnectionString("BlogDBContext"), serverVersion);
+               options.EnableSensitiveDataLogging();
             });
 
 var app = builder.Build();
@@ -28,12 +29,38 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<BlogDBContext>();
-    var testPosts = new BlogPost[]{
-        new BlogPost(){Title="First Test", Summary="First Post in a database",Content="Some Content", Date=DateTime.Now }
-    };
+    // var testPosts = new BlogPost[]{
+    //     new BlogPost(){Title="First Test", Summary="First Post in a database",Content="Some Content", Date=DateTime.Now }
+    // };
 
-    context.Posts.AddRange(testPosts);
-    context.SaveChanges();
+    // context.Posts.AddRange(testPosts);
+    // context.SaveChanges();
+
+    // var tags = new Tag[]{
+    //     new Tag(){Text="C#"},
+    //     new Tag(){Text="C++"},
+    //     new Tag(){Text="ASP.Net"}
+    // };
+
+    // context.Tags.AddRange(tags);
+    // context.SaveChanges();
+
+    var postList = context.Posts.Where((post)=>post.Title=="First Test").Include(post=>post.Tags).ToList();
+    //var tagsList = context.Tags.AsNoTracking().Where((tag)=>tag.Text == "C#" || tag.Text == "ASP.Net").ToList();
+    var post = postList[0];
+    foreach(var tag in post.Tags){
+        Console.WriteLine(tag.Text);
+    }
+    // Console.WriteLine(postList.Count);
+    // if(postList.Count != 0){
+    //     var post = postList[0];
+    //     post.Tags = new List<Tag>();
+    //     tagsList.ForEach(tag=>{
+    //         post.Tags.Add(tag);
+    //     });
+    //     context.SaveChanges();
+    // }
+    
 }
 
 
