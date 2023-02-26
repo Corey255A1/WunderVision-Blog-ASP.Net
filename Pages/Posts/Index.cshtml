@@ -1,0 +1,6 @@
+@page
+@model WunderVisionBlog2.Pages.Posts.IndexModel
+@foreach (var item in Model.Posts)
+{
+    <div>@Html.DisplayFor(modelItem => item.Title)</div>
+}

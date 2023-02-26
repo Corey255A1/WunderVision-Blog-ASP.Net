@@ -24,44 +24,44 @@ if (!app.Environment.IsDevelopment())
 }
 
 //https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-7.0&tabs=visual-studio-code#update-the-database-context-class
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
 
-    var context = services.GetRequiredService<BlogDBContext>();
-    // var testPosts = new BlogPost[]{
-    //     new BlogPost(){Title="First Test", Summary="First Post in a database",Content="Some Content", Date=DateTime.Now }
-    // };
+//     var context = services.GetRequiredService<BlogDBContext>();
+//     // var testPosts = new BlogPost[]{
+//     //     new BlogPost(){Title="First Test", Summary="First Post in a database",Content="Some Content", Date=DateTime.Now }
+//     // };
 
-    // context.Posts.AddRange(testPosts);
-    // context.SaveChanges();
+//     // context.Posts.AddRange(testPosts);
+//     // context.SaveChanges();
 
-    // var tags = new Tag[]{
-    //     new Tag(){Text="C#"},
-    //     new Tag(){Text="C++"},
-    //     new Tag(){Text="ASP.Net"}
-    // };
+//     // var tags = new Tag[]{
+//     //     new Tag(){Text="C#"},
+//     //     new Tag(){Text="C++"},
+//     //     new Tag(){Text="ASP.Net"}
+//     // };
 
-    // context.Tags.AddRange(tags);
-    // context.SaveChanges();
+//     // context.Tags.AddRange(tags);
+//     // context.SaveChanges();
 
-    var postList = context.Posts.Where((post)=>post.Title=="First Test").Include(post=>post.Tags).ToList();
-    //var tagsList = context.Tags.AsNoTracking().Where((tag)=>tag.Text == "C#" || tag.Text == "ASP.Net").ToList();
-    var post = postList[0];
-    foreach(var tag in post.Tags){
-        Console.WriteLine(tag.Text);
-    }
-    // Console.WriteLine(postList.Count);
-    // if(postList.Count != 0){
-    //     var post = postList[0];
-    //     post.Tags = new List<Tag>();
-    //     tagsList.ForEach(tag=>{
-    //         post.Tags.Add(tag);
-    //     });
-    //     context.SaveChanges();
-    // }
+//     var postList = context.Posts.Where((post)=>post.Title=="First Test").Include(post=>post.Tags).ToList();
+//     //var tagsList = context.Tags.AsNoTracking().Where((tag)=>tag.Text == "C#" || tag.Text == "ASP.Net").ToList();
+//     var post = postList[0];
+//     foreach(var tag in post.Tags){
+//         Console.WriteLine(tag.Text);
+//     }
+//     // Console.WriteLine(postList.Count);
+//     // if(postList.Count != 0){
+//     //     var post = postList[0];
+//     //     post.Tags = new List<Tag>();
+//     //     tagsList.ForEach(tag=>{
+//     //         post.Tags.Add(tag);
+//     //     });
+//     //     context.SaveChanges();
+//     // }
     
-}
+// }
 
 
 app.UseHttpsRedirection();
