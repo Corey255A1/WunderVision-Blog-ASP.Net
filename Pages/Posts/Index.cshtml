@@ -1,6 +1,10 @@
 @page
 @model WunderVisionBlog2.Pages.Posts.IndexModel
+<ul>
 @foreach (var item in Model.Posts)
 {
-    <div>@Html.DisplayFor(modelItem => item.Title)</div>
+    <li>
+    <a href="Posts/@item.Title">@item.Title</a>
+    </li>
 }
+</ul>
