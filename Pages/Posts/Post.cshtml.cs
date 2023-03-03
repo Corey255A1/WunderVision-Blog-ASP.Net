@@ -5,7 +5,7 @@ namespace WunderVisionBlog2.Pages.Posts;
 
 public class PostModel: PageModel{
 
-    public string? Title { get; set; }
+    public string? Url { get; set; }
     private readonly BlogDBContext _blogContext;
     
     public BlogPost? Post { get; set; }
@@ -14,9 +14,9 @@ public class PostModel: PageModel{
         _blogContext = context;
     }
 
-    public async Task OnGetAsync(string title){
-        Title = title;
-        Console.WriteLine(Title);
-        Post = await _blogContext.Posts.AsNoTracking().Where(post=>post.Title==Title).FirstAsync();
+    public async Task OnGetAsync(string url){
+        Url = url;
+        Console.WriteLine(Url);
+        Post = await _blogContext.Posts.AsNoTracking().Where(post=>post.URL==url).FirstAsync();
     }
 }
