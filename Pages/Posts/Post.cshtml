@@ -1,6 +1,6 @@
-@page "/post/{url}"
+@page "/Post/{url}"
 @model WunderVisionBlog2.Pages.Posts.PostModel
 
 <div>
-    @Model.Post.Content;
+    @Html.Raw(Model.HTMLContent)
 </div>

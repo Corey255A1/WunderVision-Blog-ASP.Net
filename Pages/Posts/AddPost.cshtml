@@ -1,0 +1,20 @@
+@page "/AddPost/{secret}"
+@model WunderVisionBlog2.Pages.Posts.AddPostModel
+
+<div>
+    <form method="post">
+        <label for="title">Title</label><br>
+        <input id="title" name="title" type="text"><br>
+        <label for="url">URL</label><br>
+        <input id="url" name="url" type="text"><br>
+        <label for="thumbnailurl">Thumbnail URL</label><br>
+        <input id="thumbnailurl" name="thumbnailurl" type="text"><br>
+        <label for="date">Date</label><br>
+        <input id="date" name="date" type="date"><br>
+        <label for="summary">Summary</label><br>
+        <input id="summary" name="summary" type="text"><br>
+        <label for="content">Content</label><br>
+        <textarea id="content" name="content" rows="5" cols="50"></textarea><br>
+        <input type="submit">
+    </form>
+</div>

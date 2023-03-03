@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using WunderVisionBlog2.Models.Blog;
+using Markdig;
 namespace WunderVisionBlog2.Pages.Posts;
 
 public class PostModel: PageModel{
@@ -10,6 +11,8 @@ public class PostModel: PageModel{
     
     public BlogPost? Post { get; set; }
 
+    public string? HTMLContent { get; set; }
+
     public PostModel(BlogDBContext context){
         _blogContext = context;
     }
@@ -18,5 +21,8 @@ public class PostModel: PageModel{
         Url = url;
         Console.WriteLine(Url);
         Post = await _blogContext.Posts.AsNoTracking().Where(post=>post.URL==url).FirstAsync();
+        if(Post == null) { return; }
+
+        HTMLContent = Markdown.ToHtml(Post.Content);
     }
 }
