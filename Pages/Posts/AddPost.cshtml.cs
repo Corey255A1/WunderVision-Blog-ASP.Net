@@ -49,7 +49,6 @@ public class AddPostModel: PageModel{
         if(secret != _configuration["AddPostSecret"]){
             return Redirect(@"\Posts");
         }
-        Console.WriteLine("POST");
         BlogPost newPost = new BlogPost(){
             Title=Title,
             ThumbnailURL=ThumbnailURL,

@@ -1,10 +1,23 @@
 @page
 @model WunderVisionBlog2.Pages.Posts.IndexModel
+@{
+    ViewData["Title"] = "Blog";
+}
 <ul>
 @foreach (var item in Model.Posts)
 {
     <li>
-        <a href="/Post/@item.URL">@item.Title</a>
+        <a class="card" href="/Post/@item.URL">
+            <div class="row">
+                <div class="col-auto">
+                    <img src="@item.ThumbnailURL" alt="@item.Title">
+                </div>
+                <div class="col">
+                    <h3>@item.Title</h3>
+                    <div>@item.Summary</div>
+                </div>
+            </div>
+        </a>
     </li>
 }
 </ul>

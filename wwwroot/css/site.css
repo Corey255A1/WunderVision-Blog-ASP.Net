@@ -15,4 +15,32 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #333333;
+  color: white;
+}
+
+ul{
+  list-style-type: none;
+}
+
+a{
+  
+  color:inherit;
+}
+a:hover{
+  font-weight: bold;
+  color:inherit;
+}
+
+a.card{
+  text-decoration: none;
+  color: black;
+  margin: 4px;
+  padding: 4px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px black;
+}
+a.card:hover{
+  border: 2px dashed black;
+  font-weight: inherit;
 }
