@@ -1,11 +1,15 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @{
+    string cdnURL = Configuration["CDNURL"]??"";
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
     <h1 class="display-4">WunderVision</h1>
+    <img class="wv-rounded" src="@cdnURL/WunderBot.png"></img>
     <p>Welcome!</p>
     Here you will find <a href="/Posts">Blog Posts</a> about various software engineering
     topics and <a href="/Projects">Personal Projects</a> that I've developed far enough along to demo.</p>

@@ -1,6 +1,9 @@
 @page
 @model WunderVisionBlog2.Pages.Posts.IndexModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @{
+    string cdnURL = Configuration["CDNURL"]??"";
     ViewData["Title"] = "Blog";
 }
 <ul>
@@ -10,7 +13,7 @@
         <a class="card" href="/Post/@item.URL">
             <div class="row">
                 <div class="col-auto">
-                    <img src="@item.ThumbnailURL" alt="@item.Title">
+                    <img src="@cdnURL/@item.ThumbnailURL" alt="@item.Title">
                 </div>
                 <div class="col">
                     <h3>@item.Title</h3>

@@ -44,3 +44,14 @@ a.card:hover{
   border: 2px dashed black;
   font-weight: inherit;
 }
+
+img.icon{
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  margin: 2px;
+}
+.wv-rounded{
+  border-radius: 32px;
+  box-shadow: 1px 1px 2px black;
+}

@@ -6,23 +6,28 @@ namespace WunderVisionBlog2.Pages.Posts;
 
 public class PostModel: PageModel{
 
-    public string? Url { get; set; }
-    private readonly BlogDBContext _blogContext;
     
+    private readonly BlogDBContext _blogContext;
+    private readonly IConfiguration _configuration;
+    
+    public string CDNURL { get; set; }
+    public string? PageURL { get; set; }
     public BlogPost? Post { get; set; }
-
     public string? HTMLContent { get; set; }
 
-    public PostModel(BlogDBContext context){
+    public PostModel(BlogDBContext context, IConfiguration configuration){
         _blogContext = context;
+        _configuration = configuration;
+        CDNURL = _configuration["CDNURL"]??"";
+
     }
 
     public async Task OnGetAsync(string url){
-        Url = url;
-        Console.WriteLine(Url);
+        PageURL = url;
+        Console.WriteLine(PageURL);
         Post = await _blogContext.Posts.AsNoTracking().Where(post=>post.URL==url).FirstAsync();
         if(Post == null) { return; }
 
-        HTMLContent = Markdown.ToHtml(Post.Content);
+        HTMLContent = Markdown.ToHtml(Post.Content).Replace("@CDNURL", CDNURL);
     }
 }
