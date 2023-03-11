@@ -3,8 +3,16 @@ using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+ServerVersion serverVersion;
+if (!builder.Environment.IsDevelopment())
+{
+    serverVersion = new MySqlServerVersion(new Version(8,0));
+}
+else
+{
+    serverVersion = new MariaDbServerVersion(new Version(15,1));
+}
 
-var serverVersion = new MariaDbServerVersion(new Version(15,1));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
