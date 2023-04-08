@@ -1,9 +1,9 @@
 @page "/Post/{url}"
 @model WunderVisionBlog2.Pages.Posts.PostModel
 @{
-    ViewData["Title"] = Model.Post.Title;
+    ViewData["Title"] = Model.Post?.Title;
 }
 <div class="content bg-color3">
-    <h2>@Model.Post.Title</h2>
+    <h2>@Model.Post?.Title</h2>
     @Html.Raw(Model.HTMLContent)
 </div>

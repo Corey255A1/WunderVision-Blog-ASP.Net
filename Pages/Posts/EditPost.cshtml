@@ -1,0 +1,23 @@
+@page "/EditPost/{id}/{secret}"
+@model WunderVisionBlog2.Pages.Posts.EditPostModel
+@{
+    ViewData["Title"] = "Edit Post";
+}
+
+<div>
+    <form method="post">
+        <label for="title">Title</label><br>
+        <input id="title" name="title" type="text" value="@Model.CurrentPost?.Title"><br>
+        <label for="url">URL</label><br>
+        <input id="url" name="url" type="text" value="@Model.CurrentPost?.URL"><br>
+        <label for="thumbnailurl">Thumbnail URL</label><br>
+        <input id="thumbnailurl" name="thumbnailurl" type="text" value="@Model.CurrentPost?.ThumbnailURL"><br>
+        <label for="date">Date</label><br>
+        <input id="date" name="date" type="date" asp-for="Date"><br>
+        <label for="summary">Summary</label><br>
+        <input id="summary" name="summary" type="text" value="@Model.CurrentPost?.Summary"><br>
+        <label for="content">Content</label><br>
+        <textarea id="content" name="content" rows="5" cols="50">@Model.CurrentPost?.Content</textarea><br>
+        <input type="submit">
+    </form>
+</div>

@@ -10,7 +10,8 @@ if (!builder.Environment.IsDevelopment())
 }
 else
 {
-    serverVersion = new MariaDbServerVersion(new Version(15,1));
+    //serverVersion = new MariaDbServerVersion(new Version(15,1));
+    serverVersion = new MariaDbServerVersion(new Version(10,3));
 }
 
 
